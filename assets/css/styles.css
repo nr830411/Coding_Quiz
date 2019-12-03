@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    background-color: grey;
+    color: white;
+  }
+
+.start {
+    text-align: center;
+  }
+
+.scores {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+.timer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+.wrapper {
+    margin: 100px auto 0 auto;
+    max-width: 500px;
+  }

@@ -1,2 +1,2 @@
 # Coding_Quiz
-timer-based quiz application that stores high scores client-side
+This is a timer-based quiz application that stores high scores client-side
