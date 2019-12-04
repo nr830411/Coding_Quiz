@@ -20,7 +20,7 @@ function startQuiz() {
   questionsEl.removeAttribute("class");
 
 // Starts Quiz
-  timerId = setInterval(clockTick, 1000);
+  timerId = setInterval(countdown, 1000);
 
   timerEl.textContent = time;
 
@@ -31,61 +31,86 @@ function getQuestion() {
 
   var currentQuestion = questions[currentQuestionIndex];
 
-// update title with current question
-var titleEl = document.querySelector("#question-title");
-titleEl.textContent = currentQuestion.title;
+//REPLACES BLANK TITLE WITH CURRENT QUESTION
+  var titleEl = document.querySelector("#question-title");
+  titleEl.textContent = currentQuestion.title;
 
-choicesEl.innerHTML = "";
+  choicesEl.innerHTML = "";
 
-currentQuestion.choices.forEach(function(choice, i) {
+  currentQuestion.choices.forEach(function(choice, i) {
 
-//Creating Question Buttons 
-  var choiceNode = document.createElement("button");
-  choiceNode.setAttribute("class", "choice");
-  choiceNode.setAttribute("value", choice);
+//CREATES QUESTION BUTTONS
+  var quesButt = document.createElement("button");
+  quesButt.setAttribute("class", "choice");
+  quesButt.setAttribute("value", choice);
 
-  choiceNode.textContent = i + 1 + ". " + choice;
+  quesButt.textContent = i + 1 + ". " + choice;
 
-  choiceNode.onclick = questionClick;
+  quesButt.onclick = questionClick;
 
-  choicesEl.appendChild(choiceNode);
+  choicesEl.appendChild(quesButt);
 });
 }
 
 function questionClick() {
-  // check if user guessed wrong
   if (this.value !== questions[currentQuestionIndex].answer) {
-    // penalize time
     time -= 15;
 
     if (time < 0) {
       time = 0;
     }
-
-    // display new time on page
     timerEl.textContent = time;
-
     feedbackEl.textContent = "Wrong!";
+
   } else {
     feedbackEl.textContent = "Correct!";
   }
 
-  // flash right/wrong feedback on page for half a second
   feedbackEl.setAttribute("class", "feedback");
   setTimeout(function() {
     feedbackEl.setAttribute("class", "feedback hide");
   }, 1000);
 
-  // move to next question
+ //CHANGES TO NEXT QUESTION
   currentQuestionIndex++;
 
-  // check if we've run out of questions
   if (currentQuestionIndex === questions.length) {
     quizEnd();
   } else {
     getQuestion();
   }
 }
+
+function quizEnd () {
+
+  clearInterval(timerId)
+
+  var endScreenEl = document.querySelector("#end-screen");
+  endScreenEl.removeAttribute("class");
+
+  var finalScoreEl = document.querySelector("#final-score");
+  finalScoreEl.textContent = time;
+
+  questionsEl.setAttribute("class", "hide");
+
+}
+
+//FUNCTION FOR CLOCK TIME IN CORRESPONDENCE WITH QUESTION ANSWERS
+function countdown() {
+  time--;
+  timerEl.textContent = time;
+
+  if (time <= 0) {
+    quizEnd();
+  }
+}
+
+
+
+
+
+
+
 
 //STARTS QUIZ
 startBtn.onclick = startQuiz;
