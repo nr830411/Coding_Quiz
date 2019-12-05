@@ -105,6 +105,42 @@ function countdown() {
   }
 }
 
+function saveHighscore() {
+
+  var initials = initialsEl.value.trim();
+
+  if (initials !== "") {
+    var highscores =
+      JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+    // format new score object for current user
+    var newScore = {
+      score: time,
+      initials: initials
+    };
+
+    // save to localstorage
+    highscores.push(newScore);
+    window.localStorage.setItem("highscores", JSON.stringify(highscores));
+
+    // redirect to next page
+    window.location.href = "highscores.html";
+  }
+}
+
+function enter(event) {
+  // "13" represents the enter key
+  if (event.key === "Enter") {
+    saveHighscore();
+  }
+}
+
+
+
+
+submitBtn.onclick = saveHighscore;
+initialsEl.onkeyup = enter;
+
 
 
 

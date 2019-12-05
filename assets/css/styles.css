@@ -4,14 +4,21 @@ body {
     background-color: #F85855;
     color: white;
   }
+  
+  img {
+
+    border-radius: 50%;
+  
+  }
 
   p {
 
     background-color: honeydew;
-    padding: 50px;
+    padding: 30px;
     color: #F85855;
     text-align: center;
     font-size: 150%;
+    border-radius: 10px;
   }
   
   a {
@@ -21,6 +28,7 @@ body {
   }
   
   button {
+
     display: inline-block;
     margin: 5px;
     cursor: pointer;
@@ -30,7 +38,7 @@ body {
     padding: 2px 10px;
     color: white;
     border: 0;
-    transition: background-color 0.1s;
+
   }
   
   button:hover {
@@ -45,9 +53,15 @@ body {
     font-size: 100%;
   }
   
+  .timer {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+
   ol {
     padding-left: 0px;
-    max-height: 400px;
+    max-height: 300px;
     overflow: auto;
   }
   
@@ -80,15 +94,10 @@ body {
   }
   
   .feedback {
-    font-size: 200%;
+    font-size: 100%;
     margin-top: 20px;
     padding-top: 10px;
     color: black;
   }
   
-  .timer {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
   
